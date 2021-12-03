@@ -24,7 +24,8 @@ def playlists_index():
 @app.route('/playlists/new')
 def playlists_new():
     """Create a new playlist."""
-    return render_template('playlists_new.html', title='New Playlist')
+    return render_template('playlists_new.html', playlist={}, title="New Playlist")
+
 @app.route('/playlists', methods=['POST'])
 def playlists_submit():
     """Submit a new playlist."""
@@ -73,6 +74,11 @@ def playlists_update(playlist_id):
     # take us back to the playlist's show page
     return redirect(url_for('playlists_show', playlist_id=playlist_id, title='Edit Playlist'))
 
+@app.route('/playlists/<playlist_id>/delete', methods=['POST'])
+def playlists_delete(playlist_id):
+    """Delete one playlist."""
+    playlists.delete_one({'_id': ObjectId(playlist_id)})
+    return redirect(url_for('playlists_index'))
 if __name__ == '__main__':
     app.run(debug=True)
 
