@@ -13,7 +13,7 @@ def video_url_creator(id_lst):
         videos.append(video)
     return videos
 
-client = MongoClient(os.environ.get('DATABASE_URL'))
+client = MongoClient("mongodb+srv://heroku:1234@cluster0.f7pwd.mongodb.net/Cluster0?retryWrites=true&w=majority")
 db = client.Playlister
 playlists = db.playlists
 
