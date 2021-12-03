@@ -1,6 +1,7 @@
 from flask import Flask,  render_template, request, redirect, url_for
 from pymongo import MongoClient
 from bson.objectid import ObjectId
+import os
 
 app = Flask(__name__)
 
@@ -12,7 +13,7 @@ def video_url_creator(id_lst):
         videos.append(video)
     return videos
 
-client = MongoClient()
+client = MongoClient(os.environ.get('DATABASE_URL'))
 db = client.Playlister
 playlists = db.playlists
 
