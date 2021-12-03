@@ -21,6 +21,10 @@
         </form>
         </p>
 
+        {% for comment in comments %}
+            {% include 'partials/comment.html' %}
+        {% endfor %}
+
         {% include 'partials/comment_form.html' %}
     </div>
 </div>
